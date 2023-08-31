@@ -11,7 +11,7 @@ function Error() {
       <p>{error.message || error.statusText}</p>
       <div className="flex-md">
         <button className="btn btn--dark" onClick={() => navigate(-1)}>
-          {" "}
+          
           Go Back <ArrowUturnLeftIcon width={20} />
         </button>
 
