@@ -1,3 +1,5 @@
+/// set timeout function designed to give effect of submission button as it will give feel of produre is happening
+/// this will give time to let submit button stay diabled for that duration 
 export const waait=()=> new Promise(res=>setTimeout(res,Math.random()*1000))
 
 
