@@ -1,10 +1,10 @@
-import React from "react";
 import { Form } from "react-router-dom";
+
+// library
 import { UserPlusIcon } from "@heroicons/react/24/solid";
-import illustration from '../assets/illustration.jpg'
 
-
-
+// assets
+import illustration from "../assets/illustration.jpg";
 
 const Intro = () => {
   return (
@@ -14,7 +14,7 @@ const Intro = () => {
           Take Control of <span className="accent">Your Money</span>
         </h1>
         <p>
-          Personal budgeting is the secret to finacial freedom.Start your
+          Personal budgeting is the secret to financial freedom. Start your
           journey today.
         </p>
         <Form method="post">
@@ -26,13 +26,15 @@ const Intro = () => {
             aria-label="Your Name"
             autoComplete="given-name"
           />
-          <input type="hidden" name="_action" value={newUser}/>
-          <button type="submit" className="btn btn--dark">  <span>Create Account</span><UserPlusIcon width={20}/> </button>
+          <input type="hidden" name="_action" value="newUser" />
+          <button type="submit" className="btn btn--dark">
+            <span>Create Account</span>
+            <UserPlusIcon width={20} />
+          </button>
         </Form>
       </div>
-      <img src={illustration} alt="personWithMoney"  width={600}/>
+      <img src={illustration} alt="Person with money" width={600} />
     </div>
   );
 };
-
 export default Intro;
