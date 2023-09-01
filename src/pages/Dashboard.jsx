@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 // components
 import Intro from "../components/Intro";
 import AddBudgetForm from "../components/AddBudgetForm";
-import AddExpenseForm from "../components/AddExpenseForm"
+import AddExpenseForm from "../components/AddExpenseForm";
 //  helper functions
 import { createBudget, createExpense, fetchData, waait } from "../helper";
+import BudgetItem from "../components/BudgetItem";
 
 // loader
 export function dashboardLoader() {
@@ -46,10 +47,14 @@ export async function dashboardAction({ request }) {
       throw new Error("There was a problem creating your budget.");
     }
   }
-  
+
   if (_action === "createExpense") {
     try {
-     createExpense({name:values.newExpense,amount:values.newExpense,budgetId:values.newExpenseBudget})
+      createExpense({
+        name: values.newExpense,
+        amount: values.newExpense,
+        budgetId: values.newExpenseBudget,
+      });
       return toast.success(`Expense ${values.newExpense} created!`);
     } catch (e) {
       throw new Error("There was a problem creating your Expense.");
@@ -72,7 +77,13 @@ const Dashboard = () => {
               <div className="grid-lg">
                 <div className="flex-lg">
                   <AddBudgetForm />
-                  <AddExpenseForm budgets={budgets}  /> 
+                  <AddExpenseForm budgets={budgets} />
+                </div>
+                <h2>Existing Budgets</h2>
+                <div className="budgets">{
+                  budgets.map((budget)=>(
+                  <BudgetItem key={budgets.id} budget={budget} />
+                  ))}
                 </div>
               </div>
             ) : (
