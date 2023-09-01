@@ -61,8 +61,27 @@ export const formatCurrency = (amt) => {
 
 
 
+export const calculateSpentByBudget=(budgetId)=>{
+  const expenses=fetchData("expenses")??[];
+  const budgetSpent=expenses.reduce((acc,expense)=>{
 
 
+    if(expense.budgetId!==budgetId)
+    return acc
+
+    return acc+=expense.amount
+
+
+  },0)
+  return budgetSpent;
+}
+
+
+
+
+export const formatPercentage=(amt)=>{
+  return amt.toLocaleString(undefined,{style:"percent",minimumFractionDigits:0})
+}
 
 
 
