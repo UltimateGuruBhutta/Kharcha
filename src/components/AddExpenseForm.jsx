@@ -1,13 +1,22 @@
-import React, { useRef } from "react";
+import { PlusCircleIcon } from "@heroicons/react/24/solid";
+import React, { useEffect, useRef } from "react";
 import { useFetcher } from "react-router-dom";
 
 function AddExpenseForm({ budgets }) {
   const fetcher = useFetcher();
   const formRef = useRef();
   const focusRef = useRef();
+  const isSubmitting=fetcher.state==="submitting"
 
+  useEffect(()=>{
+   if(!isSubmitting){
+      formRef.current.reset()
+      focusRef.current.focus()
+      
+   }
+  })
   return (
-    <div className="form-wraper">
+    <div className="form-wrapper">
       <h2 className="h3">
         Add new{" "}
         <span className="accent">
@@ -17,7 +26,7 @@ function AddExpenseForm({ budgets }) {
       </h2>
       <fetcher.Form method="post" className="grid-sm" ref={formRef}>
         <div className="expense-inputs">
-          <div className="grid xs">
+          <div className="grid-xs">
             <label htmlFor="newExpense">Expense Name</label>
             <input
               type="text"
@@ -42,7 +51,7 @@ function AddExpenseForm({ budgets }) {
             />
           </div>
         </div>
-        <div className="grid-xs">
+        <div className="grid-xs "hidden={budgets.length===1}>
           <label htmlFor="newExpenseBudget">Budget Category</label>
           <select name="newExpenseBudget" id="newExpenseBudget" required>
             {budgets
@@ -56,6 +65,16 @@ function AddExpenseForm({ budgets }) {
               })}
           </select>
         </div>
+        <input type="hidden"  name="_action" value="createExpense"/>
+        <button type="submit" className="btn btn--dark" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <span> Creating Budget ... </span>
+          ) : (
+            <>
+              <span>Add Expense</span>
+              <PlusCircleIcon width={20} />
+            </>
+          )}</button>
       </fetcher.Form>
     </div>
   );
