@@ -12,18 +12,6 @@ export const fetchData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
 
-
-export const formatDateToLocaleString=(epoch)=>
-new Date(epoch).toLocaleDateString();
-
-
-
-
-
-
-
-
-
 // create budget
 export const createBudget = ({
   name, amount
@@ -76,6 +64,7 @@ export const calculateSpentByBudget = (budgetId) => {
 
 
 // FORMATTING
+export const formatDateToLocaleString = (epoch) => new Date(epoch).toLocaleDateString();
 
 // Formating percentages
 export const formatPercentage = (amt) => {

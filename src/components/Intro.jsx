@@ -10,14 +10,7 @@ import { useEffect, useRef } from "react";
 const Intro = () => {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
-  const formRef = useRef();
-
-  useEffect(() => {
-    if (!isSubmitting) {
-      formRef.current.reset();
-    }
-  }, [isSubmitting]);
-
+ 
   return (
     <div className="intro">
       <div>
@@ -36,7 +29,7 @@ const Intro = () => {
             placeholder="What is your name?"
             aria-label="Your Name"
             autoComplete="given-name"
-            ref={formRef}
+             
           />
           <input type="hidden" name="_action" value="newUser" />
           <button

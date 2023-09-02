@@ -1,16 +1,12 @@
-import React from "react";
-import { formatCurrency, formatDateToLocaleString } from "../helpers";
+import { formatCurrency, formatDateToLocaleString } from "../helpers"
 
-function ExpenseItem({ expense }) {
+const ExpenseItem = ({ expense }) => {
   return (
     <>
       <td>{expense.name}</td>
-
       <td>{formatCurrency(expense.amount)}</td>
-
       <td>{formatDateToLocaleString(expense.createdAt)}</td>
     </>
-  );
+  )
 }
-
-export default ExpenseItem;
+export default ExpenseItem
