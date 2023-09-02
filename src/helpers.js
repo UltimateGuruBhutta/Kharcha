@@ -1,4 +1,4 @@
-export const waait = () => new Promise(res => setTimeout(res, Math.random() * 2000))
+export const waait = () => new Promise(res => setTimeout(res, Math.random() * 800))
 
 
 // colors
@@ -11,6 +11,18 @@ const generateRandomColor = () => {
 export const fetchData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
+
+
+export const formatDateToLocaleString=(epoch)=>
+new Date(epoch).toLocaleDateString();
+
+
+
+
+
+
+
+
 
 // create budget
 export const createBudget = ({

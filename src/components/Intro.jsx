@@ -1,12 +1,23 @@
-import { Form } from "react-router-dom";
+import { Form, useFetcher } from "react-router-dom";
 
 // library
 import { UserPlusIcon } from "@heroicons/react/24/solid";
 
 // assets
 import illustration from "../assets/illustration.jpg";
+import { useEffect, useRef } from "react";
 
 const Intro = () => {
+  const fetcher = useFetcher();
+  const isSubmitting = fetcher.state === "submitting";
+  const formRef = useRef();
+
+  useEffect(() => {
+    if (!isSubmitting) {
+      formRef.current.reset();
+    }
+  }, [isSubmitting]);
+
   return (
     <div className="intro">
       <div>
@@ -25,11 +36,22 @@ const Intro = () => {
             placeholder="What is your name?"
             aria-label="Your Name"
             autoComplete="given-name"
+            ref={formRef}
           />
           <input type="hidden" name="_action" value="newUser" />
-          <button type="submit" className="btn btn--dark">
-            <span>Create Account</span>
-            <UserPlusIcon width={20} />
+          <button
+            type="submit"
+            className="btn btn--dark"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <span> Creating Account ... </span>
+            ) : (
+              <>
+                <span>Create Account</span>
+                <UserPlusIcon width={20} />
+              </>
+            )}
           </button>
         </Form>
       </div>
