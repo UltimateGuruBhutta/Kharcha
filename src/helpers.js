@@ -28,6 +28,22 @@ export const createBudget = ({
     JSON.stringify([...existingBudgets, newItem]))
 }
 
+export const getAllMatchingItems=({category,key,value})=>{
+  const data = fetchData(category) ?? [];
+  return data.filter((item)=>item[key]===value)
+
+
+
+}
+
+
+
+
+
+
+
+
+
 // create expense
 export const createExpense = ({
   name, amount, budgetId
